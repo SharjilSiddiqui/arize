@@ -96,35 +96,35 @@
 
         /* ADD THIS: The container for the sliding effect */
         .bg-wrapper {
-    position: fixed;
-    top: 0;
-    left: 0;
-    width: 200%;
-    height: 100%;
-    display: flex;
-    transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-    z-index: 0;
-    transform: translateX(-50%);
-    background-color: #000;
-}
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 200%;
+            height: 100%;
+            display: flex;
+            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
+            z-index: 0;
+            transform: translateX(-50%);
+            background-color: #000;
+        }
 
-.bg-slide {
-    width: 50%;
-    height: 100vh;
-    background-position: center center;
-    background-repeat: no-repeat;
-    flex-shrink: 0;
-    
-    /* DEFAULT FOR PORTRAIT (Mobile): Fill the screen */
-    background-size: cover; 
-}
+        .bg-slide {
+            width: 50%;
+            height: 100vh;
+            background-position: center center;
+            background-repeat: no-repeat;
+            flex-shrink: 0;
 
-/* ONLY FOR LANDSCAPE: Show full image without cutting top/bottom */
-@media (orientation: landscape) {
-    .bg-slide {
-        background-size: contain;
-    }
-}
+            /* DEFAULT FOR PORTRAIT (Mobile): Fill the screen */
+            background-size: cover;
+        }
+
+        /* ONLY FOR LANDSCAPE: Show full image without cutting top/bottom */
+        @media (orientation: landscape) {
+            .bg-slide {
+                background-size: contain;
+            }
+        }
 
         #page-content {
             position: relative;
@@ -336,46 +336,60 @@
             background: #fff;
         }
 
-        /* Fullscreen Modal & Slider */
+        /* Fullscreen Modal & Slider - Arize Theme */
         .modal {
             display: none;
             position: fixed;
-            z-index: 1000;
+            z-index: 2000;
+            /* Above everything */
             left: 0;
             top: 0;
             width: 100%;
             height: 100%;
-            background-color: rgba(0, 0, 0, 0.9);
+            background-color: rgba(0, 0, 0, 0.95);
             justify-content: center;
             align-items: center;
+            backdrop-filter: blur(5px);
         }
 
         .slider-container {
             position: relative;
-            width: 90%;
-            height: 90%;
-            display: flex;
-            align-items: center;
-            justify-content: center;
+            width: 85%;
+            height: 85%;
+            border: 3px solid var(--arize-purple);
+            background: #111;
+            border-radius: 15px;
+            box-shadow: 0 0 30px rgba(166, 140, 198, 0.3);
+            overflow: hidden;
         }
 
         .slider {
-            display: flex;
             width: 100%;
             height: 100%;
-            overflow: hidden;
-            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
         .slider-image {
-            width: 100%;
-            height: 100%;
+            max-width: 95%;
+            max-height: 95%;
             object-fit: contain;
             display: none;
+            /* Slider Animation */
+            animation: slideFade 0.6s cubic-bezier(0.23, 1, 0.32, 1);
         }
 
-        .slider-image.active {
-            display: block;
+        @keyframes slideFade {
+            from {
+                opacity: 0;
+                transform: scale(0.9) translateY(20px);
+            }
+
+            to {
+                opacity: 1;
+                transform: scale(1) translateY(0);
+            }
         }
 
         .prev,
@@ -383,51 +397,52 @@
             cursor: pointer;
             position: absolute;
             top: 50%;
-            width: auto;
-            padding: 16px;
-            color: white;
+            width: 50px;
+            height: 50px;
+            background: var(--arize-yellow);
+            color: #000;
+            border: 2px solid #000;
             font-weight: bold;
-            font-size: 20px;
-            transition: 0.6s ease;
+            font-size: 24px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
             user-select: none;
-            -webkit-user-select: none;
             transform: translateY(-50%);
-            background-color: black;
             z-index: 10;
+            transition: all 0.2s;
         }
 
         .prev {
-            left: 0;
-            /* Add this line to align the button to the left */
-            border-radius: 0 3px 3px 0;
+            left: 20px;
+            border-radius: 10px 0 0 10px;
         }
 
         .next {
-            right: 0;
-            border-radius: 3px 0 0 3px;
+            right: 20px;
+            border-radius: 0 10px 10px 0;
         }
 
         .prev:hover,
         .next:hover {
-            background-color: rgba(0, 0, 0, 0.8);
+            background: #fff;
+            transform: translateY(-50%) scale(1.1);
         }
 
         .close-btn {
             position: absolute;
-            top: 15px;
-            right: 35px;
-            color: #f1f1f1;
-            font-size: 40px;
+            top: 20px;
+            right: 30px;
+            color: var(--arize-yellow);
+            font-size: 45px;
             font-weight: bold;
-            transition: 0.3s;
             cursor: pointer;
-            z-index: 10;
+            z-index: 2001;
+            transition: color 0.3s;
         }
 
-        .close-btn:hover,
-        .close-btn:focus {
-            color: #bbb;
-            text-decoration: none;
+        .close-btn:hover {
+            color: #fff;
         }
 
         /* Mobile styles */
@@ -822,6 +837,19 @@
                 closeModal();
             }
         });
+
+        function showSlides(n) {
+            const slides = document.getElementsByClassName("slider-image");
+            if (n > slides.length) { slideIndex = 1 }
+            if (n < 1) { slideIndex = slides.length }
+
+            for (let i = 0; i < slides.length; i++) {
+                slides[i].style.display = "none";
+            }
+
+            // Displaying the block triggers the 'slideFade' animation defined in CSS
+            slides[slideIndex - 1].style.display = "block";
+        }
     </script>
 </body>
 
