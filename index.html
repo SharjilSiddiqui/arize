@@ -91,7 +91,7 @@
             margin: 0;
             padding: 0;
             width: 100vw;
-            height: 100dvh;
+            height: 100vh;
             overflow: hidden;
             font-family: 'Segoe UI', sans-serif;
             background-color: #000;
@@ -108,16 +108,8 @@
             display: flex;
             transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
             z-index: 0;
-            transform: translateX(0);
-            background-color: #000;
-        }
-
-        body.night-active .bg-wrapper {
             transform: translateX(-50%);
-        }
-
-        body.day-active .bg-wrapper {
-            transform: translateX(0);
+            background-color: #000;
         }
 
         .bg-slide {
@@ -130,16 +122,9 @@
             /* DEFAULT FOR PORTRAIT (Mobile): Fill the screen */
             background-size: cover;
             /* fills screen */
-            background-position: center 60%;
+            background-position: center 70%;
             /* keeps building centered */
             background-repeat: no-repeat;
-        }
-
-        /* ONLY FOR LANDSCAPE: Show full image without cutting top/bottom */
-        @media (orientation: landscape) {
-            .bg-slide {
-                background-size: contain;
-            }
         }
 
         .utility-buttons {
@@ -148,6 +133,13 @@
 
         .day-night-toggle {
             bottom: calc(20px + env(safe-area-inset-bottom));
+        }
+
+        /* ONLY FOR LANDSCAPE: Show full image without cutting top/bottom */
+        @media (orientation: landscape) {
+            .bg-slide {
+                background-size: contain;
+            }
         }
 
         #page-content {
