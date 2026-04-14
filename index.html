@@ -120,7 +120,9 @@
             flex-shrink: 0;
 
             /* DEFAULT FOR PORTRAIT (Mobile): Fill the screen */
-            background-size: cover;
+            background-size: cover;   /* fills screen */
+            background-position: center 70%; /* keeps building centered */
+            background-repeat: no-repeat;
         }
 
         /* ONLY FOR LANDSCAPE: Show full image without cutting top/bottom */
@@ -506,8 +508,8 @@
             .floor-plans-btn {
                 min-width: 60px;
                 /* Base contracted width (Circle-ish) */
-                width: 60px;
-                height: 60px;
+                width: 45px;
+                height: 45px;
                 padding: 0;
                 border-radius: 40px;
                 border: 2px solid #000 !important;
@@ -793,7 +795,7 @@
                 <i class="fa-solid fa-vr-cardboard"></i>
                 <span class="btn-text">Landmarks</span>
             </button>
-            <button class="amenities-btn" onclick="location.href='./gym/gym.html'">
+            <button class="amenities-btn" onclick="location.href='./lobby/lobby.html'">
                 <i class="fa-solid fa-concierge-bell"></i>
                 <span class="btn-text">Amenities</span>
             </button>
