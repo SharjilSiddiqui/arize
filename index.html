@@ -106,28 +106,38 @@
             /* Fallback */
         }
 
-        /* ADD THIS: The container for the sliding effect */
-        .bg-wrapper {
+        .bg-layer {
             position: fixed;
             top: 0;
             left: 0;
-            width: 200%;
-            height: 100%;
-            display: flex;
-            transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
-            z-index: 0;
-            background-color: #000;
-            transform: translateX(-100%);
-        }
-
-        .bg-slide {
-            width: 50%;
+            width: 100%;
             height: 100dvh;
-
-            background-position: center center;
-            /* 🔥 FIX */
+            background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
+            transition: opacity 0.8s ease-in-out;
+            z-index: 0;
+        }
+
+        /* Day image */
+        .day-bg {
+            background-image: url('./assets/renders/day.jpg');
+            opacity: 1;
+        }
+
+        /* Night image */
+        .night-bg {
+            background-image: url('./assets/renders/night.jpg');
+            opacity: 0;
+        }
+
+        /* When NIGHT is active */
+        body.night-active .day-bg {
+            opacity: 0;
+        }
+
+        body.night-active .night-bg {
+            opacity: 1;
         }
 
         /* ONLY FOR LANDSCAPE: Show full image without cutting top/bottom */
@@ -143,16 +153,6 @@
             /* Ensure UI stays on top of the images */
             width: 100%;
             height: 100%;
-        }
-
-
-        /* When Day mode is active, slide back to the first image */
-        body.day-active .bg-wrapper {
-            transform: translateX(0);
-        }
-
-        body:not(.day-active) .bg-wrapper {
-            transform: translateX(-50%);
         }
 
         .top-bar {
@@ -400,13 +400,14 @@
         }
 
         .slider-image {
-            max-width: 95%;
-            max-height: 95%;
+            max-width: 85%;
+            max-height: 85%;
             object-fit: contain;
             display: none;
-            animation: slideFade 0.6s cubic-bezier(0.23, 1, 0.32, 1);
-            margin: auto;
-            align-self: center;
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
         }
 
         @keyframes slideFade {
@@ -777,6 +778,15 @@
                 transform: rotate(90deg);
             }
         }
+
+        .bg-layer {
+            transition: opacity 0.8s ease-in-out, transform 1s ease;
+        }
+
+        body.night-active .night-bg {
+            transform: scale(1.02);
+            /* slight zoom */
+        }
     </style>
 </head>
 
@@ -786,10 +796,8 @@
         <p>Please rotate your device to portrait mode<br>for the best experience</p>
     </div>
 
-    <div class="bg-wrapper" id="bgWrapper">
-        <div class="bg-slide" id="day-slide"></div>
-        <div class="bg-slide" id="night-slide"></div>
-    </div>
+    <div class="bg-layer day-bg"></div>
+    <div class="bg-layer night-bg"></div>
 
     <div id="page-content">
         <audio id="background-audio" loop muted>
@@ -895,20 +903,19 @@
             const toggle = document.getElementById("toggleTheme");
             const themeLabel = document.getElementById("themeLabel");
 
-            // 1. Set Initial State (Night)
+            // Default = NIGHT
             toggle.checked = true;
             themeLabel.textContent = "NIGHT";
-            document.body.classList.remove("day-active");
+            document.body.classList.add("night-active");
 
-            // 2. Listen for the toggle change
             toggle.addEventListener("change", () => {
                 if (toggle.checked) {
-                    // NIGHT MODE
-                    document.body.classList.remove("day-active");
+                    // NIGHT
+                    document.body.classList.add("night-active");
                     themeLabel.textContent = "NIGHT";
                 } else {
-                    // DAY MODE
-                    document.body.classList.add("day-active");
+                    // DAY
+                    document.body.classList.remove("night-active");
                     themeLabel.textContent = "DAY";
                 }
             });
@@ -972,7 +979,7 @@
             for (i = 0; i < slides.length; i++) {
                 slides[i].style.display = "none";
             }
-            slides[slideIndex - 1].style.display = "flex";
+            slides[slideIndex - 1].style.display = "block";
         }
 
         // Close modal if user clicks outside of the content
@@ -999,7 +1006,7 @@
             }
 
             // Displaying the block triggers the 'slideFade' animation defined in CSS
-            slides[slideIndex - 1].style.display = "flex";
+            slides[slideIndex - 1].style.display = "block";
         }
 
         setInterval(checkOrientation, 500);
