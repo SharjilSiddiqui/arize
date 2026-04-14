@@ -243,15 +243,15 @@
 
         @keyframes rotatePhone {
             0% {
-                transform: rotate(0deg);
-            }
-
-            50% {
                 transform: rotate(90deg);
             }
 
-            100% {
+            50% {
                 transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(90deg);
             }
         }
 
@@ -1406,9 +1406,15 @@
         // Orientation check
         function checkOrientation() {
             const overlay = document.getElementById("rotateOverlay");
-            if (window.innerHeight > window.innerWidth && /Mobi|Android/i.test(navigator.userAgent)) {
+
+            const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+            const isLandscape = window.innerWidth > window.innerHeight;
+
+            if (isMobile && isLandscape) {
+                // ❌ Block landscape
                 overlay.style.display = "flex";
             } else {
+                // ✅ Allow portrait
                 overlay.style.display = "none";
             }
         }
@@ -1427,7 +1433,7 @@
     </audio>
     <div id="rotateOverlay">
         <i class="fa-solid fa-mobile-screen-button"></i>
-        <p>Please rotate your device<br>for the best experience</p>
+        <p>Please rotate your device to portrait mode<br>for the best experience</p>
     </div>
     <div id="preloadContainer" style="background-color:rgba(255,255,255,1)">
         <div style="z-index: 4; position: absolute; left: 0%; top: 50%; width: 100.00%; height: 10.00%">
