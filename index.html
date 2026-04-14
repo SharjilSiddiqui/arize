@@ -280,10 +280,12 @@
 
         .btn-text {
             opacity: 0;
-            transition: opacity 0.3s ease; /* Ensure transition is smooth */
+            transition: opacity 0.3s ease;
+            /* Ensure transition is smooth */
             font-weight: 700;
             text-transform: uppercase;
-            pointer-events: none; /* Prevents text from interfering with clicks */
+            pointer-events: none;
+            /* Prevents text from interfering with clicks */
         }
 
         .vr-btn:hover,
@@ -706,10 +708,59 @@
                 left: 14px;
             }
         }
+
+        /* Rotate Overlay */
+        #rotateOverlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+
+            background: rgba(0, 0, 0, 0.95);
+            color: white;
+
+            display: none;
+            align-items: center;
+            justify-content: center;
+            flex-direction: column;
+
+            font-family: 'Segoe UI', sans-serif;
+            font-size: 1.5rem;
+
+            z-index: 999999;
+            text-align: center;
+            padding: 20px;
+        }
+
+        #rotateOverlay i {
+            font-size: 3rem;
+            margin-bottom: 15px;
+            animation: rotatePhone 2s infinite ease-in-out;
+        }
+
+        /* Portrait hint animation */
+        @keyframes rotatePhone {
+            0% {
+                transform: rotate(90deg);
+            }
+
+            50% {
+                transform: rotate(0deg);
+            }
+
+            100% {
+                transform: rotate(90deg);
+            }
+        }
     </style>
 </head>
 
 <body>
+    <div id="rotateOverlay">
+        <i class="fa-solid fa-mobile-screen-button"></i>
+        <p>Please rotate your device to portrait mode<br>for the best experience</p>
+    </div>
 
     <div class="bg-wrapper" id="bgWrapper">
         <div class="bg-slide" id="day-slide"></div>
@@ -779,8 +830,18 @@
 
     <script>
         function checkOrientation() {
-            // You can leave this empty or add logic to handle mobile rotation
-            console.log("Orientation check triggered");
+            const overlay = document.getElementById("rotateOverlay");
+
+            const isMobile = /Mobi|Android/i.test(navigator.userAgent);
+            const isLandscape = window.innerWidth > window.innerHeight;
+
+            if (isMobile && isLandscape) {
+                // ❌ Block landscape
+                overlay.style.display = "flex";
+            } else {
+                // ✅ Allow portrait
+                overlay.style.display = "none";
+            }
         }
 
         window.addEventListener("load", checkOrientation);
@@ -917,6 +978,8 @@
             // Displaying the block triggers the 'slideFade' animation defined in CSS
             slides[slideIndex - 1].style.display = "block";
         }
+
+        setInterval(checkOrientation, 500);
     </script>
 </body>
 
