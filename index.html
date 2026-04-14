@@ -115,7 +115,7 @@
         .bg-slide {
             width: 50%;
             height: 100dvh;
-            background-position: center;
+            background-position: center 30%;
             background-repeat: no-repeat;
             flex-shrink: 0;
 
@@ -157,22 +157,30 @@
             transform: translateX(0);
         }
 
-        /* Logo Styles */
-        .logo-left {
+        .top-bar {
             position: absolute;
             top: 20px;
-            left: 20px;
-            z-index: 10;
-            width: 120px;
+            left: 0;
+            width: 100%;
+
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+
+            padding: 0 20px;
+            z-index: 20;
         }
 
-        /* UPDATED: Moves the Skyes logo to the top right */
-        .logo-below {
-            position: absolute;
-            top: 20px;
-            right: 20px;
-            z-index: 10;
-            width: 120px;
+        .logo-left,
+        .logo-right {
+            /* 🔥 KEY: same height = perfect alignment */
+            object-fit: contain;
+        }
+        .logo-left {
+            height: 50px;
+        }
+        .logo-right {
+            height: 80px;
         }
 
         /* Right-side flat buttons (3BHK / 4BHK) */
@@ -788,16 +796,18 @@
             Your browser does not support the audio element.
         </audio>
 
-        <!-- <img src="./assets/logos/Arize-01.png" alt="Ariha Logo" class="logo-left"> -->
-        <img src="./assets//logos/Arize-02.png" alt="Skyes Logo" class="logo-below">
+        <div class="top-bar">
+            <img src="./assets/logos/arize-buildtech.png" class="logo-left">
+            <img src="./assets/logos/Arize-02.png" class="logo-right">
+        </div>
 
         <div class="left-button-group">
             <button class="vr-btn" onclick="location.href='./project/project.html'">
-                <i class="fa-solid fa-vr-cardboard"></i>
+                <i class="fa-solid fa-location-dot"></i>
                 <span class="btn-text">Landmarks</span>
             </button>
             <button class="amenities-btn" onclick="location.href='./lobby/lobby.html'">
-                <i class="fa-solid fa-concierge-bell"></i>
+                <i class="fa-solid fa-spa"></i>
                 <span class="btn-text">Amenities</span>
             </button>
             <button class="floor-plans-btn" onclick="openModal()">
