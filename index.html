@@ -168,7 +168,7 @@
             top: 20px;
             right: 20px;
             z-index: 10;
-            width: 150px;
+            width: 120px;
         }
 
         /* Right-side flat buttons (3BHK / 4BHK) */
@@ -279,8 +279,11 @@
         }
 
         .btn-text {
-            font-size: 0.95rem;
-            font-weight: 500;
+            opacity: 0;
+            transition: opacity 0.3s ease; /* Ensure transition is smooth */
+            font-weight: 700;
+            text-transform: uppercase;
+            pointer-events: none; /* Prevents text from interfering with clicks */
         }
 
         .vr-btn:hover,
@@ -446,114 +449,161 @@
         }
 
         /* Mobile styles */
+        /* REPLACE the content of @media (max-width: 768px) with this: */
         @media (max-width: 768px) {
-            .logo-left {
-                width: 60px;
+
+            .logo-below {
+                /* Increased for Portrait visibility */
+                width: 130px;
+                top: 15px;
+                z-index: 100;
+                /* Ensures it stays above all other UI elements */
             }
 
             .logo-below {
-                width: 60px;
-                top: 15px;
                 right: 15px;
+                /* Keeps it snug in the top-right corner */
             }
 
-            .button-group {
+            /* Left Group: Horizontal at the bottom center */
+            /* Left side buttons on mobile */
+            .left-button-group {
+                left: 10px;
                 top: 50%;
-                right: 3%;
                 transform: translateY(-50%);
-                align-items: flex-end;
+                flex-direction: column;
+                bottom: auto;
+                /* Reset the bottom value */
                 gap: 10px;
             }
 
-            .tour-btn {
-                min-width: 70px;
-                height: 30px;
-                font-size: 0.7rem;
-                border-radius: 15px;
-                padding: 0 8px;
-                gap: 4px;
+            /* Right side buttons on mobile */
+            .button-group {
+                right: 10px;
+                top: 50%;
+                transform: translateY(-50%);
+                gap: 10px;
             }
 
-            .tour-btn i {
-                font-size: 0.8rem;
-            }
-
-            .utility-btn {
-                width: 30px;
-                height: 30px;
-                font-size: 0.9rem;
-            }
-
-            .left-button-group {
-                left: 5px;
-                top: unset;
-                bottom: 50px;
-                transform: none;
-                flex-direction: row;
-                justify-content: flex-start;
-                gap: 5px;
-                width: calc(100% - 10px);
-            }
-
+            /* Common sizing for all side buttons on mobile */
+            /* Update base styles to support expansion */
             .vr-btn,
             .amenities-btn,
             .floor-plans-btn {
-                min-width: 25px;
-                width: 25px;
-                height: 50px;
-                border-radius: 12px;
-                font-size: 0.6rem;
-                padding: 0 3px;
-                gap: 2px;
-                flex-direction: column;
-                justify-content: center;
-                text-align: center;
+                min-width: 60px;
+                /* Base contracted width (Circle-ish) */
+                width: 60px;
+                height: 60px;
+                padding: 0;
+                border-radius: 40px;
+                border: 2px solid #000 !important;
+                background: var(--button-color) !important;
+                color: var(--button-text) !important;
+                display: flex;
+                align-items: center;
+                justify-content: flex-start;
+                /* Align icon to left */
+                overflow: hidden;
+                /* Hides text when contracted */
+                cursor: pointer;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+                transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
+                white-space: nowrap;
             }
 
+            /* Position icons centered in the contracted state */
+            .vr-btn i,
+            .amenities-btn i,
+            .floor-plans-btn i {
+                min-width: 60px;
+                text-align: center;
+                font-size: 1.2rem;
+            }
+
+            /* Expansion Logic */
+            .vr-btn:hover,
+            .amenities-btn:hover,
+            .floor-plans-btn:hover {
+                width: 200px;
+                /* Expands to show full name */
+                background: #ffffff !important;
+                box-shadow: 4px 4px 0px #000;
+            }
+
+            /* Ensure text is hidden until expansion */
             .btn-text {
-                font-size: 0.5rem;
-                text-align: center;
-                line-height: 1;
-                word-break: break-word;
+                opacity: 0;
+                font-size: medium;
+                transition: opacity 0.3s;
+                font-weight: 700;
+                text-transform: uppercase;
             }
 
-            .utility-buttons {
-                bottom: calc(10px + env(safe-area-inset-bottom));
-                right: 8px;
-                gap: 5px;
+            .vr-btn:hover .btn-text,
+            .amenities-btn:hover .btn-text,
+            .floor-plans-btn:hover .btn-text {
+                opacity: 1;
             }
 
+            /* Hide text on mobile to prevent clutter, show icons only */
+            /* .btn-text,
+            .tour-btn span {
+                display: none;
+            } */
+
+            .tour-btn {
+                min-width: 80px;
+                height: 40px;
+                font-size: 0.75rem;
+                border-radius: 20px;
+                box-shadow: 2px 2px 0px #000;
+            }
+
+            /* Day/Night Toggle: Bottom Center */
             .day-night-toggle {
-                bottom: 10px;
-                left: 8px;
+                left: 15px;
+                /* Align to the left */
+                bottom: 20px;
+                /* Snug at the bottom */
+                transform: none;
+                /* Remove the centering transform */
+                background: rgba(0, 0, 0, 0.6);
+                /* Slightly darker for better visibility */
+                padding: 6px 12px;
+                border-radius: 30px;
+                border: 2px solid #000;
+                /* Matching logo outline theme */
+                z-index: 100;
             }
 
             .day-night-toggle label {
                 font-size: 12px;
+                /* Smaller text to fit better */
+                letter-spacing: 1px;
             }
 
-            .day-night-toggle input[type="checkbox"] {
-                width: 25px;
-                height: 12px;
+            /* Utility Buttons: Very Bottom Right */
+            .utility-buttons {
+                right: 10px;
+                bottom: 10px;
+                gap: 8px;
             }
 
-            .day-night-toggle input[type="checkbox"]::before {
-                width: 10px;
-                height: 10px;
-            }
-
-            .day-night-toggle input[type="checkbox"]:checked::before {
-                left: 14px;
+            .utility-btn {
+                width: 35px;
+                height: 35px;
+                font-size: 1rem;
+                box-shadow: 2px 2px 0px #000;
             }
         }
 
         @media (max-width: 1000px) and (min-width: 769px) {
             .logo-left {
-                width: 60px;
+                width: 90px;
             }
 
             .logo-below {
-                width: 60px;
+                width: 120px;
                 top: 15px;
                 right: 15px;
             }
@@ -586,24 +636,41 @@
             }
 
             .left-button-group {
-                top: 50%;
-                left: 8px;
-                transform: translateY(-50%);
+                position: absolute;
+                top: 40%;
+                /* Matches the right side buttons */
+                left: 5%;
+                /* Matches the right side gap */
+                display: flex;
                 flex-direction: column;
+                gap: 25px;
+                /* Matches the button-group gap */
                 align-items: flex-start;
-                gap: 6px;
+                /* Aligns items to the left */
+                z-index: 4;
             }
 
             .vr-btn,
             .amenities-btn,
             .floor-plans-btn {
-                min-width: 85px;
-                width: 85px;
-                height: 28px;
-                border-radius: 14px;
-                font-size: 0.7rem;
-                padding: 0 6px;
-                gap: 4px;
+                min-width: 140px;
+                /* Matches BhK button width */
+                height: 60px;
+                /* Matches BhK button height */
+                padding: 0 20px;
+                border-radius: 40px;
+                border: 2px solid #000 !important;
+                background: var(--button-color) !important;
+                color: var(--button-text) !important;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                gap: 10px;
+                font-size: 1.1rem;
+                font-weight: 700;
+                cursor: pointer;
+                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
+                transition: all 0.3s ease-in-out;
             }
 
             .btn-text {
@@ -656,7 +723,7 @@
         </audio>
 
         <!-- <img src="./assets/logos/Arize-01.png" alt="Ariha Logo" class="logo-left"> -->
-        <img src="./assets//logos/Arize-01.png" alt="Skyes Logo" class="logo-below">
+        <img src="./assets//logos/Arize-02.png" alt="Skyes Logo" class="logo-below">
 
         <div class="left-button-group">
             <button class="vr-btn" onclick="location.href='./project/project.html'">
