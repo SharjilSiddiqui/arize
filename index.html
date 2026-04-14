@@ -283,13 +283,21 @@
         }
 
         .btn-text {
-            opacity: 0;
-            transition: opacity 0.3s ease;
-            /* Ensure transition is smooth */
+            /* opacity: 0; */
+            /* transition: opacity 0.3s ease; */
             font-weight: 700;
             text-transform: uppercase;
             pointer-events: none;
-            /* Prevents text from interfering with clicks */
+            margin-left: 3px;
+            /* Space between icon and text */
+            white-space: nowrap;
+        }
+
+        /* Ensure expansion reveals text in Landscape/Desktop */
+        .vr-btn:hover .btn-text,
+        .amenities-btn:hover .btn-text,
+        .floor-plans-btn:hover .btn-text {
+            opacity: 1 !important;
         }
 
         .vr-btn:hover,
