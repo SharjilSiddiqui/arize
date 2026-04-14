@@ -32,7 +32,7 @@
         }
 
         #night-slide {
-            background-image: url('./assets/renders/night.jpeg');
+            background-image: url('./assets/renders/night.jpg');
         }
 
         /* Updated Global Button Styles */
@@ -99,7 +99,7 @@
             margin: 0;
             padding: 0;
             width: 100vw;
-            height: 100dvh;
+            height: 100vh;
             overflow: hidden;
             font-family: 'Segoe UI', sans-serif;
             background-color: #000;
@@ -111,7 +111,7 @@
             top: 0;
             left: 0;
             width: 100%;
-            height: 100dvh;
+            height: 100vh;
             background-position: center;
             background-repeat: no-repeat;
             background-size: cover;
@@ -478,6 +478,10 @@
         /* Mobile styles */
         /* REPLACE the content of @media (max-width: 768px) with this: */
         @media (max-width: 768px) {
+            .bg-layer {
+                background-size: cover;
+                background-position: center top; /* 🔥 THIS FIXES YOUR ISSUE */
+            }
 
             .logo-below {
                 /* Increased for Portrait visibility */
@@ -780,6 +784,7 @@
         }
 
         .bg-layer {
+            background-position: center center;
             transition: opacity 0.8s ease-in-out, transform 1s ease;
         }
 
