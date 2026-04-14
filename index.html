@@ -91,7 +91,7 @@
             margin: 0;
             padding: 0;
             width: 100vw;
-            height: 100vh;
+            height: 100dvh;
             overflow: hidden;
             font-family: 'Segoe UI', sans-serif;
             background-color: #000;
@@ -108,8 +108,16 @@
             display: flex;
             transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
             z-index: 0;
-            transform: translateX(-50%);
+            transform: translateX(0);
             background-color: #000;
+        }
+
+        body.night-active .bg-wrapper {
+            transform: translateX(-50%);
+        }
+
+        body.day-active .bg-wrapper {
+            transform: translateX(0);
         }
 
         .bg-slide {
@@ -120,8 +128,10 @@
             flex-shrink: 0;
 
             /* DEFAULT FOR PORTRAIT (Mobile): Fill the screen */
-            background-size: cover;   /* fills screen */
-            background-position: center 70%; /* keeps building centered */
+            background-size: cover;
+            /* fills screen */
+            background-position: center 60%;
+            /* keeps building centered */
             background-repeat: no-repeat;
         }
 
@@ -130,6 +140,14 @@
             .bg-slide {
                 background-size: contain;
             }
+        }
+
+        .utility-buttons {
+            bottom: calc(10px + env(safe-area-inset-bottom));
+        }
+
+        .day-night-toggle {
+            bottom: calc(20px + env(safe-area-inset-bottom));
         }
 
         #page-content {
