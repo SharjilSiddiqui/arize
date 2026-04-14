@@ -18,13 +18,21 @@
 
     <style>
         :root {
-            --day-bg: url('./assets/renders/day.jpg');
-            --night-bg: url('./assets/renders/night.jpg');
+            /* --day-bg: url('./assets/renders/day.jpg');
+            --night-bg: url('./assets/renders/night.jpg'); */
             /* Arize Theme Colors */
             --arize-purple: #d5a758;
             --arize-yellow: #d5a758;
             --button-color: var(--arize-purple);
             --button-text: #000000;
+        }
+
+        #day-slide {
+            background-image: url('./assets/renders/day.jpg');
+        }
+
+        #night-slide {
+            background-image: url('./assets/renders/night.jpg');
         }
 
         /* Updated Global Button Styles */
@@ -108,18 +116,17 @@
             display: flex;
             transition: transform 0.8s cubic-bezier(0.65, 0, 0.35, 1);
             z-index: 0;
-            transform: translateX(-50%);
             background-color: #000;
+            transform: translateX(-100%);
         }
 
         .bg-slide {
             width: 50%;
             height: 100dvh;
-            background-position: center 30%;
-            background-repeat: no-repeat;
-            flex-shrink: 0;
 
-            /* DEFAULT FOR PORTRAIT (Mobile): Fill the screen */
+            background-position: center center;
+            /* 🔥 FIX */
+            background-repeat: no-repeat;
             background-size: cover;
         }
 
@@ -144,17 +151,8 @@
             transform: translateX(0);
         }
 
-        #day-slide {
-            background-image: var(--day-bg);
-        }
-
-        #night-slide {
-            background-image: var(--night-bg);
-        }
-
-        /* When Day mode is active, slide to 0 */
-        body.day-active .bg-wrapper {
-            transform: translateX(0);
+        body:not(.day-active) .bg-wrapper {
+            transform: translateX(-50%);
         }
 
         .top-bar {
@@ -176,9 +174,11 @@
             /* 🔥 KEY: same height = perfect alignment */
             object-fit: contain;
         }
+
         .logo-left {
             height: 50px;
         }
+
         .logo-right {
             height: 80px;
         }
@@ -911,9 +911,6 @@
                     themeLabel.textContent = "DAY";
                 }
             });
-
-            // Make sure your floor plan images are created
-            createImages();
         };
 
         // Fullscreen toggle
