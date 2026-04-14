@@ -106,40 +106,6 @@
             /* Fallback */
         }
 
-        .bg-layer {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100vh;
-            background-position: center;
-            background-repeat: no-repeat;
-            background-size: cover;
-            transition: opacity 0.8s ease-in-out;
-            z-index: 0;
-        }
-
-        /* Day image */
-        .day-bg {
-            background-image: url('./assets/renders/day.jpg');
-            opacity: 1;
-        }
-
-        /* Night image */
-        .night-bg {
-            background-image: url('./assets/renders/night.jpg');
-            opacity: 0;
-        }
-
-        /* When NIGHT is active */
-        body.night-active .day-bg {
-            opacity: 0;
-        }
-
-        body.night-active .night-bg {
-            opacity: 1;
-        }
-
         /* ONLY FOR LANDSCAPE: Show full image without cutting top/bottom */
         @media (orientation: landscape) {
             .bg-slide {
@@ -478,11 +444,6 @@
         /* Mobile styles */
         /* REPLACE the content of @media (max-width: 768px) with this: */
         @media (max-width: 768px) {
-            .bg-layer {
-                background-size: cover;
-                background-position: center top; /* 🔥 THIS FIXES YOUR ISSUE */
-            }
-
             .logo-below {
                 /* Increased for Portrait visibility */
                 width: 130px;
@@ -783,14 +744,45 @@
             }
         }
 
-        .bg-layer {
-            background-position: 30% center;
-            transition: opacity 0.8s ease-in-out, transform 1s ease;
-        }
-
         body.night-active .night-bg {
             transform: scale(1.02);
             /* slight zoom */
+        }
+
+
+
+
+        .bg-img {
+            position: fixed;
+            inset: 0;
+
+            width: 100%;
+            height: 100dvh;
+
+            object-fit: cover;
+            object-position: center;
+
+            transition: opacity 0.8s ease;
+            z-index: 0;
+        }
+
+        /* Day visible by default */
+        .day-img {
+            opacity: 1;
+        }
+
+        /* Night hidden */
+        .night-img {
+            opacity: 0;
+        }
+
+        /* Toggle */
+        body.night-active .day-img {
+            opacity: 0;
+        }
+
+        body.night-active .night-img {
+            opacity: 1;
         }
     </style>
 </head>
@@ -801,8 +793,8 @@
         <p>Please rotate your device to portrait mode<br>for the best experience</p>
     </div>
 
-    <div class="bg-layer day-bg"></div>
-    <div class="bg-layer night-bg"></div>
+    <img src="./assets/renders/day.jpg" class="bg-img day-img">
+    <img src="./assets/renders/night.jpg" class="bg-img night-img">
 
     <div id="page-content">
         <audio id="background-audio" loop muted>
