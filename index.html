@@ -108,7 +108,8 @@
 
         .top-bar {
             position: absolute;
-            top: 20px;
+            top: 5px;
+            /* 🔥 move up (try 0px for max) */
             left: 0;
             width: 100%;
 
@@ -128,10 +129,12 @@
 
         .logo-left {
             height: 90px;
+            transform: translateY(-40px);
         }
 
         .logo-right {
-            height: 120px;
+            height: 190px;
+            transform: translateY(-40px);
         }
 
         .logo-left,
@@ -371,12 +374,20 @@
 
         .slider-container {
             position: relative;
-            width: 85%;
-            height: 85%;
-            border: 3px solid var(--arize-purple);
-            background: #111;
-            border-radius: 15px;
-            box-shadow: 0 0 30px rgba(166, 140, 198, 0.3);
+            width: 100vw;
+            /* slightly bigger */
+            height: 100vh;
+
+            border: none;
+            /* ❌ remove yellow border */
+            background: #000;
+            /* cleaner black */
+
+            border-radius: 10px;
+            /* optional: reduce curve */
+            box-shadow: none;
+            /* ❌ remove glow */
+
             overflow: hidden;
         }
 
@@ -389,10 +400,15 @@
         }
 
         .slider-image {
-            max-width: 85%;
-            max-height: 85%;
+            width: 97%;
+            /* 🔥 bigger */
+            height: 97%;
+
             object-fit: contain;
+            /* keep aspect ratio */
+
             display: none;
+
             position: absolute;
             top: 50%;
             left: 50%;
@@ -653,13 +669,11 @@
             }
 
             .logo-left {
-                width: 90px;
+                width: 120px;
             }
 
-            .logo-below {
+            .logo-right {
                 width: 120px;
-                top: 15px;
-                right: 15px;
             }
 
             .button-group {
@@ -803,17 +817,18 @@
 
 
         .bg-img {
-    position: fixed;
-    top: 0;
-    left: 0;
+            position: fixed;
+            top: 0;
+            left: 0;
 
-    width: 100vw;
-    height: 100vh;
+            width: 100vw;
+            height: 100vh;
 
-    object-fit: fill; /* ❗ stretches image */
+            object-fit: fill;
+            /* ❗ stretches image */
 
-    z-index: 1;
-}
+            z-index: 1;
+        }
 
         #page-content {
             padding-bottom: 80px;
@@ -1000,8 +1015,8 @@
         // Array of 9 image paths. Replace with your actual image paths.
         const floorPlanImages = [
             './assets/floor-plans/ground-floor.jpg',
-            './assets/floor-plans/typical-floor.jpg',
             './assets/floor-plans/1st-floor.jpg',
+            './assets/floor-plans/typical-floor.jpg',
             './assets/floor-plans/8th-&-15th-floor-refuge.jpg',
             './assets/floor-plans/22nd-floor-refuge.jpg',
             './assets/floor-plans/terrace-floor.jpg',

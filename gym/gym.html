@@ -2,7 +2,7 @@
 <html>
 
 <head>
-    <title>ARIZE | Gym</title>
+    <title>ARIZE | GYM</title>
     <link rel="apple-touch-icon" sizes="180x180" href="/assets/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/assets/favicon-32x32.png">
     <link rel="icon" type="image/png" sizes="16x16" href="/assets/favicon-16x16.png">
@@ -414,10 +414,10 @@
             bottom: 26px;
             /* distance from bottom - adjust as needed */
             display: flex;
-            gap: 12px;
+            gap: 8px;
             z-index: 99999;
             /* background: rgba(255, 255, 255, 0.95); */
-            padding: 10px 14px;
+            padding: 6px 10px;
             border-radius: 36px;
             /* box-shadow: 0 8px 24px rgba(0, 0, 0, 0.18); */
             align-items: center;
@@ -434,44 +434,32 @@
         /* hide scrollbar on webkit */
 
         .amenity-btn {
-            background: #800040;
-            /* maroon */
-            color: #fff;
-            border: none;
-            padding: 12px 20px;
-            border-radius: 28px;
-            font-size: 14px;
-            font-weight: 600;
-            display: inline-flex;
-            align-items: center;
-            gap: 10px;
-            cursor: pointer;
-            transition: transform 0.18s ease, background 0.18s ease;
-            white-space: nowrap;
-            box-shadow: 0 2px 6px rgba(0, 0, 0, 0.12);
-        }
-
-        .amenity-btn {
             background: var(--arize-purple);
-            /* Brand purple */
             color: #000;
             border: 2px solid #000;
-            /* Black outline */
-            padding: 12px 20px;
-            border-radius: 28px;
-            font-size: 14px;
-            font-weight: 800;
-            /* Bolder font */
+
+            padding: 8px 14px;
+            /* 🔽 reduced */
+            border-radius: 20px;
+            /* 🔽 tighter pill */
+
+            font-size: 12px;
+            /* 🔽 smaller text */
+            font-weight: 700;
+
             display: inline-flex;
             align-items: center;
-            gap: 10px;
+            gap: 6px;
+            /* 🔽 tighter spacing */
+
             cursor: pointer;
-            transition: all 0.18s ease;
             white-space: nowrap;
-            box-shadow: 0 4px 0px #000;
-            /* Brand hard shadow */
+
+            box-shadow: 2px 2px 0px #000;
+            /* 🔽 smaller shadow */
+            transition: all 0.18s ease;
+
             text-transform: uppercase;
-            letter-spacing: 0.5px;
         }
 
         .amenity-btn:hover {
@@ -482,7 +470,7 @@
 
         /* Specific style for active/current page button */
         .amenity-btn i {
-            font-size: 16px;
+            font-size: 14px;
             color: #000;
         }
 
@@ -491,33 +479,40 @@
             top: 20px;
             right: 10px;
             display: flex;
-            gap: 10px;
+            gap: 6px;
             z-index: 9999;
         }
 
         .utility-btn {
-            width: 55px;
-            height: 55px;
+            width: 38px;
+            /* 🔽 reduced from 55 */
+            height: 38px;
+
             border-radius: 50%;
             border: 2px solid #000;
-            /* Black outline */
+
             background: var(--arize-yellow);
-            /* Utility buttons use yellow */
             color: #000;
+
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+
+            font-size: 0.95rem;
+            /* 🔽 smaller icon */
+
             cursor: pointer;
-            box-shadow: 0 4px 0px #000;
-            /* Brand hard shadow */
+
+            box-shadow: 2px 2px 0px #000;
+            /* 🔽 lighter shadow */
             transition: all 0.2s ease-in-out;
         }
 
         .utility-btn:hover {
             background: #ffffff;
-            transform: scale(1.1) translateY(-2px);
-            box-shadow: 6px 6px 0px #000;
+            transform: scale(1.05) translateY(-1px);
+            /* 🔽 subtle */
+            box-shadow: 4px 4px 0px #000;
         }
 
         /* responsive tweaks */
