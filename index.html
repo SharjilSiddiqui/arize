@@ -127,11 +127,17 @@
         }
 
         .logo-left {
-            height: 50px;
+            height: 90px;
         }
 
         .logo-right {
-            height: 80px;
+            height: 120px;
+        }
+
+        .logo-left,
+        .logo-right {
+            object-fit: contain;
+            display: block;
         }
 
         /* Right-side flat buttons (3BHK / 4BHK) */
@@ -147,7 +153,7 @@
         .left-button-group,
         .button-group {
             position: absolute;
-            top: 50%;
+            top: 52%;
             transform: translateY(-50%);
         }
 
@@ -183,36 +189,41 @@
         /* Floating circular utility buttons (bottom-right) */
         .utility-buttons {
             position: fixed;
-            bottom: 1px;
-            right: 10px;
+            bottom: 15px;
+            right: 15px;
             display: flex;
-            gap: 10px;
+            gap: 8px;
             z-index: 9999;
         }
 
         .utility-btn {
-            width: 55px;
-            height: 55px;
-            border-radius: 50%;
-            border: none;
+            width: 45px;
+            height: 40px;
+
+            border-radius: 20px;
+            border: 2px solid #000;
+
             background: var(--button-color);
-            color: white;
+            color: var(--button-text);
+
             display: flex;
             align-items: center;
             justify-content: center;
-            font-size: 1.4rem;
+
+            font-size: 1rem;
+
+            box-shadow: 0 4px 0px #000;
             cursor: pointer;
-            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-            transition: all 0.3s ease-in-out;
-            position: relative;
-            bottom: 12px;
+
+            transition: all 0.2s ease;
         }
 
         .utility-btn:hover {
-            background: #c00064;
-            transform: scale(1.1);
-            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.4);
+            background: #ffffff !important;
+            transform: scale(1.05) translateY(-2px);
+            box-shadow: 4px 4px 0px #000;
         }
+
 
         /* Left-center VR & Amenities buttons */
         .left-button-group {
@@ -679,18 +690,8 @@
             }
 
             .left-button-group {
-                position: absolute;
-                top: 40%;
-                /* Matches the right side buttons */
-                left: 5%;
-                /* Matches the right side gap */
-                display: flex;
-                flex-direction: column;
-                gap: 25px;
-                /* Matches the button-group gap */
-                align-items: flex-start;
-                /* Aligns items to the left */
-                z-index: 4;
+                top: 50%;
+                transform: translateY(-50%);
             }
 
             /* .vr-btn,
@@ -802,19 +803,17 @@
 
 
         .bg-img {
-            position: fixed;
-            top: 0;
-            left: 0;
+    position: fixed;
+    top: 0;
+    left: 0;
 
-            width: 100vw;
-            height: 100vh;
+    width: 100vw;
+    height: 100vh;
 
-            object-fit: cover;
-            object-position: center bottom;
-            /* ✅ FIX */
+    object-fit: fill; /* ❗ stretches image */
 
-            z-index: 0;
-        }
+    z-index: 1;
+}
 
         #page-content {
             padding-bottom: 80px;
