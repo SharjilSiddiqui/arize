@@ -35,21 +35,6 @@
             background-image: url('./assets/renders/night.jpg');
         }
 
-        /* Updated Global Button Styles */
-        .tour-btn,
-        .utility-btn,
-        .vr-btn,
-        .amenities-btn,
-        .floor-plans-btn {
-            background: var(--button-color) !important;
-            color: var(--button-text) !important;
-            border: 2px solid #000 !important;
-            /* Matches the logo outline */
-            font-weight: 700 !important;
-            text-transform: uppercase;
-            letter-spacing: 1px;
-        }
-
         /* Use Yellow for the BhK buttons to differentiate */
         .button-group .tour-btn {
             background: var(--arize-yellow) !important;
@@ -166,7 +151,7 @@
             transform: translateY(-50%);
         }
 
-        .tour-btn {
+        /* .tour-btn {
             min-width: 140px;
             height: 60px;
             border-radius: 40px;
@@ -183,7 +168,7 @@
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease-in-out;
             padding: 0 20px;
-        }
+        } */
 
         .tour-btn:hover {
             background: #c00064;
@@ -239,7 +224,7 @@
             z-index: 4;
         }
 
-        .vr-btn,
+        /* .vr-btn,
         .amenities-btn,
         .floor-plans-btn {
             min-width: 180px;
@@ -257,6 +242,33 @@
             cursor: pointer;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease-in-out;
+        } */
+
+        .tour-btn,
+        .vr-btn,
+        .amenities-btn,
+        .floor-plans-btn {
+            width: 180px;
+            height: 55px;
+
+            border-radius: 35px;
+            border: 2px solid #000;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            font-size: 0.9rem;
+            font-weight: 700;
+
+            background: var(--button-color);
+            color: var(--button-text);
+
+            box-shadow: 0 4px 0px #000;
+            cursor: pointer;
+
+            transition: all 0.2s ease;
         }
 
         .btn-text {
@@ -441,15 +453,50 @@
             color: #fff;
         }
 
+        /* ✅ ONE BASE BUTTON */
+        .common-btn {
+            width: 180px;
+            height: 55px;
+
+            border-radius: 35px;
+            border: 2px solid #000;
+
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+
+            font-size: 0.9rem;
+            font-weight: 700;
+
+            background: var(--button-color);
+            color: var(--button-text);
+
+            box-shadow: 0 4px 0px #000;
+            cursor: pointer;
+
+            transition: all 0.2s ease;
+        }
+
         /* Mobile styles */
         /* REPLACE the content of @media (max-width: 768px) with this: */
         @media (max-width: 768px) {
             .bg-img {
                 object-fit: contain;
-                /* 🔥 NO CROPPING */
+                /* ✅ no cropping */
                 background: black;
-                /* fills empty space nicely */
             }
+
+            /* .tour-btn,
+            .vr-btn,
+            .amenities-btn,
+            .floor-plans-btn {
+                min-width: 110px;
+                height: 42px;
+                font-size: 0.75rem;
+                border-radius: 25px;
+                box-shadow: 2px 2px 0px #000;
+            } */
 
             .logo-below {
                 /* Increased for Portrait visibility */
@@ -468,66 +515,47 @@
             /* Left side buttons on mobile */
             .left-button-group {
                 left: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                flex-direction: column;
-                bottom: auto;
-                /* Reset the bottom value */
-                gap: 10px;
+                gap: 12px;
             }
 
-            /* Right side buttons on mobile */
             .button-group {
                 right: 10px;
-                top: 50%;
-                transform: translateY(-50%);
-                gap: 10px;
+                gap: 12px;
             }
 
-            /* Common sizing for all side buttons on mobile */
-            /* Update base styles to support expansion */
+            /* .tour-btn,
             .vr-btn,
             .amenities-btn,
             .floor-plans-btn {
-                min-width: 60px;
-                /* Base contracted width (Circle-ish) */
-                width: 45px;
-                height: 45px;
-                padding: 0;
-                border-radius: 40px;
-                border: 2px solid #000 !important;
-                background: var(--button-color) !important;
-                color: var(--button-text) !important;
+                width: 180px;
+                height: 55px;
+                border-radius: 35px;
+
                 display: flex;
                 align-items: center;
-                justify-content: flex-start;
-                /* Align icon to left */
-                overflow: hidden;
-                /* Hides text when contracted */
-                cursor: pointer;
-                box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
-                transition: width 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), background 0.3s;
-                white-space: nowrap;
+                justify-content: center; */
+            /* ✅ FIX */
+            /* gap: 10px; */
+            /* } */
+
+            .tour-btn,
+            .vr-btn,
+            .amenities-btn,
+            .floor-plans-btn {
+                width: 130px;
+                height: 42px;
+                font-size: 0.7rem;
+                border-radius: 25px;
             }
 
             /* Position icons centered in the contracted state */
-            .vr-btn i,
+            /* .vr-btn i,
             .amenities-btn i,
             .floor-plans-btn i {
                 min-width: 60px;
                 text-align: center;
                 font-size: 1.2rem;
-            }
-
-            /* Expansion Logic */
-            .vr-btn:hover,
-            .amenities-btn:hover,
-            .floor-plans-btn:hover {
-                width: 200px;
-                /* Expands to show full name */
-                background: #ffffff !important;
-                box-shadow: 4px 4px 0px #000;
-            }
+            } */
 
             /* Ensure text is hidden until expansion */
             .btn-text {
@@ -550,13 +578,13 @@
                 display: none;
             } */
 
-            .tour-btn {
+            /* .tour-btn {
                 min-width: 80px;
                 height: 40px;
                 font-size: 0.75rem;
                 border-radius: 20px;
                 box-shadow: 2px 2px 0px #000;
-            }
+            } */
 
             /* Day/Night Toggle: Bottom Center */
             .day-night-toggle {
@@ -584,8 +612,7 @@
             /* Utility Buttons: Very Bottom Right */
             .utility-buttons {
                 right: 10px;
-                bottom: 10px;
-                gap: 8px;
+                bottom: calc(12px + env(safe-area-inset-bottom));
             }
 
             .utility-btn {
@@ -761,16 +788,21 @@
 
         .bg-img {
             position: fixed;
-            inset: 0;
-            width: 100%;
-            height: 100dvh;
+            top: 0;
+            left: 0;
+
+            width: 100vw;
+            height: 100vh;
 
             object-fit: cover;
-            /* 🔥 fills screen */
-            object-position: center top;
-            /* 🔥 prevents top cut */
+            object-position: center bottom;
+            /* ✅ FIX */
 
             z-index: 0;
+        }
+
+        #page-content {
+            padding-bottom: 80px;
         }
 
         /* Day visible by default */
@@ -953,12 +985,12 @@
 
         // Array of 9 image paths. Replace with your actual image paths.
         const floorPlanImages = [
+            './assets/floor-plans/ground-floor.jpg',
+            './assets/floor-plans/typical-floor.jpg',
             './assets/floor-plans/1st-floor.jpg',
             './assets/floor-plans/8th-&-15th-floor-refuge.jpg',
             './assets/floor-plans/22nd-floor-refuge.jpg',
-            './assets/floor-plans/ground-floor.jpg',
             './assets/floor-plans/terrace-floor.jpg',
-            './assets/floor-plans/typical-floor.jpg',
         ];
 
         // Function to create and inject image elements
