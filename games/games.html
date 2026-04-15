@@ -353,13 +353,13 @@
             const overlay = document.getElementById("rotateOverlay");
 
             const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-            const isLandscape = window.innerWidth > window.innerHeight;
+            const isPortrait = window.innerHeight > window.innerWidth;
 
-            if (isMobile && isLandscape) {
-                // ❌ Block landscape
+            if (isMobile && isPortrait) {
+                // ❌ Block portrait
                 overlay.style.display = "flex";
             } else {
-                // ✅ Allow portrait
+                // ✅ Allow landscape
                 overlay.style.display = "none";
             }
         }
@@ -582,6 +582,19 @@
                 transform: rotate(90deg);
             }
         }
+
+        @media (orientation: portrait) {
+
+            #viewer,
+            .utility-buttons,
+            .amenities-nav {
+                display: none;
+            }
+
+            #rotateOverlay {
+                display: flex !important;
+            }
+        }
     </style>
 
 </head>
@@ -590,7 +603,7 @@
     <!-- Orientation overlay -->
     <div id="rotateOverlay">
         <i class="fa-solid fa-mobile-screen-button"></i>
-        <p>Please rotate your device to portrait mode<br>for the best experience</p>
+        <p>Please rotate your device to landscape mode<br>for the best experience</p>
     </div>
     <div id="preloadContainer" style="background-color:rgba(255,255,255,1)">
         <div style="z-index: 4; position: absolute; left: 0%; top: 50%; width: 100.00%; height: 10.00%">

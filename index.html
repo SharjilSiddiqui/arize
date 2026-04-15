@@ -177,7 +177,7 @@
             align-items: center;
             justify-content: center;
             gap: 10px;
-            font-size: 1.2rem;
+            font-size: .9rem;
             font-weight: 600;
             cursor: pointer;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
@@ -192,7 +192,7 @@
         }
 
         .tour-btn i {
-            font-size: 1.4rem;
+            font-size: 1.2rem;
         }
 
         /* Floating circular utility buttons (bottom-right) */
@@ -253,7 +253,7 @@
             align-items: center;
             justify-content: flex-start;
             gap: 10px;
-            font-size: 1.2rem;
+            font-size: .9rem;
             cursor: pointer;
             box-shadow: 0 6px 15px rgba(0, 0, 0, 0.3);
             transition: all 0.3s ease-in-out;
@@ -764,8 +764,12 @@
             inset: 0;
             width: 100%;
             height: 100dvh;
+
             object-fit: cover;
-            object-position: 20% 80%;
+            /* 🔥 fills screen */
+            object-position: center top;
+            /* 🔥 prevents top cut */
+
             z-index: 0;
         }
 
@@ -787,17 +791,27 @@
         body.night-active .night-img {
             opacity: 1;
         }
+
+        @media (orientation: portrait) {
+            #page-content {
+                display: none;
+            }
+
+            #rotateOverlay {
+                display: flex !important;
+            }
+        }
     </style>
 </head>
 
 <body>
     <div id="rotateOverlay">
         <i class="fa-solid fa-mobile-screen-button"></i>
-        <p>Please rotate your device to portrait mode<br>for the best experience</p>
+        <p>Please rotate your device to landscape mode<br>for the best experience</p>
     </div>
 
-    <img src="./assets/renders/day.jpg" class="bg-img day-img">
-    <img src="./assets/renders/night.jpg" class="bg-img night-img">
+    <img src="./assets/renders/day-landscape.jpg" class="bg-img day-img">
+    <img src="./assets/renders/night-landscape.jpg" class="bg-img night-img">
 
     <div id="page-content">
         <audio id="background-audio" loop muted>
@@ -811,7 +825,7 @@
         </div>
 
         <div class="left-button-group">
-            <button class="vr-btn" onclick="location.href='./project/project.html'">
+            <button class="vr-btn" onclick="location.href='./landmarks/landmarks.html'">
                 <i class="fa-solid fa-location-dot"></i>
                 <span class="btn-text">Landmarks</span>
             </button>
@@ -867,13 +881,13 @@
             const overlay = document.getElementById("rotateOverlay");
 
             const isMobile = /Mobi|Android/i.test(navigator.userAgent);
-            const isLandscape = window.innerWidth > window.innerHeight;
+            const isPortrait = window.innerHeight > window.innerWidth;
 
-            if (isMobile && isLandscape) {
-                // ❌ Block landscape
+            if (isMobile && isPortrait) {
+                // ❌ Block portrait
                 overlay.style.display = "flex";
             } else {
-                // ✅ Allow portrait
+                // ✅ Allow landscape
                 overlay.style.display = "none";
             }
         }
